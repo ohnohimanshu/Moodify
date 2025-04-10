@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 1. Body & Gradient Background */
+        body {
+          margin: 0;
+          padding: 0;
+          font-family: 'Poppins', 'Segoe UI', sans-serif;
+          background: linear-gradient(135deg, #1a1f2c 0%, #2d3748 50%, #1a1f2c 100%);
+          color: #e2e8f0;
+          min-height: 100vh;
+          line-height: 1.6;
+        }
+      
+        /* 2. Main Container */
+        .main-container {
+          max-width: 1000px;
+          margin: 0 auto;
+          padding: 60px 20px;
+          text-align: center;
+        }
+      
+        /* 3. Heading Styles */
+        .main-container h1 {
+          font-size: 3.8rem;
+          font-weight: 800;
+          margin-bottom: 1rem;
+          background: linear-gradient(45deg, #00b4d8, #90e0ef);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+          letter-spacing: -0.02em;
+        }
+        
+        .main-container p.subtitle {
+          font-size: 1.3rem;
+          color: #a0aec0;
+          margin-bottom: 3rem;
+          font-weight: 400;
+          letter-spacing: 0.5px;
+        }
+      
+        /* 4. Mood Input Box */
+        .mood-input-group {
+          background: rgba(45, 55, 72, 0.7);
+          backdrop-filter: blur(12px);
+          border: 1px solid rgba(160, 174, 192, 0.1);
+          border-radius: 20px;
+          padding: 35px;
+          margin-bottom: 2rem;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+          transition: all 0.3s ease;
+        }
+      
+        .mood-input-group:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+      
+        .mood-input-group label {
+          display: block;
+          margin-bottom: 15px;
+          font-weight: 500;
+          color: #e2e8f0;
+          font-size: 1.2rem;
+        }
+      
+        .mood-input-group input {
+          width: 100%;
+          padding: 18px;
+          border: 2px solid rgba(160, 174, 192, 0.2);
+          border-radius: 14px;
+          outline: none;
+          font-size: 1.1rem;
+          color: #e2e8f0;
+          background: rgba(26, 32, 44, 0.6);
+          transition: all 0.3s ease;
+        }
+      
+        .mood-input-group input:focus {
+          border-color: #00b4d8;
+          background: rgba(26, 32, 44, 0.8);
+          box-shadow: 0 0 0 4px rgba(0, 180, 216, 0.15);
+        }
+      
+        /* 5. Mood Tag Buttons */
+        .mood-tags {
+          margin-top: 1.5rem;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 12px;
+        }
+      
+        .mood-tag-btn {
+          background: rgba(45, 55, 72, 0.8);
+          border: 1px solid rgba(160, 174, 192, 0.2);
+          color: #e2e8f0;
+          padding: 12px 24px;
+          border-radius: 30px;
+          cursor: pointer;
+          font-size: 1rem;
+          font-weight: 500;
+          transition: all 0.3s ease;
+          backdrop-filter: blur(8px);
+        }
+      
+        .mood-tag-btn:hover {
+          background: rgba(0, 180, 216, 0.2);
+          border-color: #00b4d8;
+          transform: translateY(-2px);
+          box-shadow: 0 5px 15px rgba(0, 180, 216, 0.2);
+        }
+      
+        /* 6. Submit Button */
+        .mood-submit-btn {
+          background: linear-gradient(45deg, #00b4d8, #48cae4);
+          color: #fff;
+          border: none;
+          padding: 18px 36px;
+          font-size: 1.2rem;
+          border-radius: 14px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+          box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
+        }
+      
+        .mood-submit-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(0, 180, 216, 0.4);
+          background: linear-gradient(45deg, #0096c7, #00b4d8);
+        }
+      
+        /* 7. Recommended Tracks Section */
+        .recommended-section {
+          margin-top: 4rem;
+          text-align: left;
+        }
+      
+        .recommended-section h2 {
+          font-size: 2.2rem;
+          margin-bottom: 1.5rem;
+          color: #e2e8f0;
+          position: relative;
+          display: inline-block;
+          font-weight: 700;
+        }
+      
+        .recommended-section h2:after {
+          content: '';
+          position: absolute;
+          bottom: -8px;
+          left: 0;
+          width: 80px;
+          height: 4px;
+          background: linear-gradient(90deg, #00b4d8, transparent);
+          border-radius: 2px;
+        }
+      
+        /* 8. Song Card Styles */
+        .song-card {
+          background: rgba(45, 55, 72, 0.7);
+          border-radius: 20px;
+          padding: 35px;
+          margin-bottom: 35px;
+          color: #e2e8f0;
+          transition: all 0.3s ease;
+          border: 1px solid rgba(160, 174, 192, 0.1);
+          backdrop-filter: blur(12px);
+        }
+      
+        .song-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+          border-color: rgba(0, 180, 216, 0.2);
+        }
+      
+        .song-header {
+          display: flex;
+          gap: 35px;
+          margin-bottom: 35px;
+        }
+      
+        .song-image {
+          width: 280px;
+          height: 280px;
+          flex-shrink: 0;
+          border-radius: 16px;
+          overflow: hidden;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+      
+        .song-image img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.3s ease;
+        }
+      
+        .song-card:hover .song-image img {
+          transform: scale(1.05);
+        }
+      
+        .song-info {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+        }
+      
+        .song-type {
+          font-size: 0.9rem;
+          text-transform: uppercase;
+          color: #00b4d8;
+          margin-bottom: 12px;
+          font-weight: 600;
+          letter-spacing: 1px;
+        }
+      
+        .song-title {
+          font-size: 3.2rem;
+          font-weight: 700;
+          margin: 0 0 20px 0;
+          color: #e2e8f0;
+          line-height: 1.2;
+          letter-spacing: -0.02em;
+        }
+      
+        .song-metadata {
+          display: flex;
+          gap: 20px;
+          margin: 15px 0;
+          font-size: 1rem;
+          color: #a0aec0;
+        }
+      
+        .metadata-item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+      
+        /* Audio Controls */
+        .audio-controls {
+          display: flex;
+          align-items: center;
+          gap: 24px;
+          margin-top: 24px;
+          padding: 20px;
+          border-radius: 12px;
+          background: rgba(26, 32, 44, 0.6);
+        }
+      
+        .play-button {
+          width: 56px;
+          height: 56px;
+          border-radius: 50%;
+          background: #00b4d8;
+          border: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          flex-shrink: 0;
+          padding: 0;
+          position: relative;
+        }
+      
+        /* Hide the original Font Awesome icon */
+        .play-button i {
+          display: none;
+        }
+      
+        /* Create custom play triangle */
+        .play-button::after {
+          content: '';
+          display: block;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 12px 0 12px 20px;
+          border-color: transparent transparent transparent #ffffff;
+          margin-left: 4px;
+          transition: all 0.3s ease;
+        }
+      
+        /* Style for pause state */
+        .play-button.playing::after {
+          border-style: double;
+          border-width: 0px 0 0px 16px;
+          height: 24px;
+          margin-left: 0;
+          border-color: transparent transparent transparent #ffffff;
+        }
+      
+        .play-button:hover {
+          transform: scale(1.05);
+          background: #0096c7;
+        }
+ 
+      
+        .lyrics-header {
+          font-size: 1.8rem;
+          font-weight: 600;
+          margin-bottom: 20px;
+          color: #e2e8f0;
+        }
+      
+        /* Updated lyrics container styles */
+        .lyrics-container {
+          background: rgba(26, 32, 44, 0.6);
+          border-radius: 16px;
+          padding: 30px;
+          margin-top: 30px;
+          border: 1px solid rgba(160, 174, 192, 0.1);
+          position: relative; /* Add this */
+        }
+        
+        .lyrics-content {
+          font-size: 1.1rem;
+          line-height: 1.8;
+          color: #a0aec0;
+          max-height: 120px;
+          overflow: hidden;
+          transition: max-height 0.3s ease, opacity 0.3s ease;
+          margin-bottom: 10px; /* Add space between lyrics and button */
+        }
+        
+        .lyrics-content.expanded {
+          max-height: none;
+          overflow: visible;
+        }
+        
+        .lyrics-toggle {
+          background: rgba(45, 55, 72, 0.8);
+          border: 1px solid rgba(160, 174, 192, 0.2);
+          color: #e2e8f0;
+          padding: 14px 28px;
+          border-radius: 25px;
+          cursor: pointer;
+          font-size: 1rem;
+          font-weight: 500;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          transition: all 0.3s ease;
+          position: relative; /* Add this */
+          z-index: 1; /* Make sure button stays above content */
+          margin-top: 10px; /* Space between lyrics and button */
+        }
+      
+        .lyrics-toggle:hover {
+          background: rgba(0, 180, 216, 0.2);
+          border-color: #00b4d8;
+        }
+      
+        /* Mood Tags */
+        .mood-tags {
+          display: flex;
+          gap: 10px;
+          margin-top: 20px;
+        }
+      
+        .mood-tag {
+          background: rgba(0, 180, 216, 0.15);
+          padding: 8px 20px;
+          border-radius: 25px;
+          font-size: 0.95rem;
+          color: #00b4d8;
+          border: 1px solid rgba(0, 180, 216, 0.3);
+        }
+      
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+          width: 10px;
+        }
+      
+        ::-webkit-scrollbar-track {
+          background: rgba(26, 32, 44, 0.6);
+        }
+      
+        ::-webkit-scrollbar-thumb {
+          background: rgba(0, 180, 216, 0.3);
+          border-radius: 5px;
+        }
+      
+        ::-webkit-scrollbar-thumb:hover {
+          background: rgba(0, 180, 216, 0.5);
+        }
+      </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Project Title -->
+        <h1>Moodify</h1>
+        <p class="subtitle">Play songs according to your current mood</p>
+        
+        <form id="mood-form" method="post">
+            {% csrf_token %}
+            <div class="mood-input-group">
+                <label for="confession">What's your mood today?</label>
+                <input type="text" name="confession" id="id_mood_input" placeholder="Type how you're feeling..." value="{{ confession }}">
+            </div>
+            
+            <!-- Mood Tag Buttons -->
+            <div class="mood-tags">
+                <button type="button" class="mood-tag-btn" data-mood="Happy">Happy</button>
+                <button type="button" class="mood-tag-btn" data-mood="Relaxed">Relaxed</button>
+                <button type="button" class="mood-tag-btn" data-mood="Energetic">Energetic</button>
+                <button type="button" class="mood-tag-btn" data-mood="Melancholic">Melancholic</button>
+                <button type="button" class="mood-tag-btn" data-mood="Romantic">Romantic</button>
+            </div>
+            
+            <!-- Submit Button -->
+            <div style="margin-top: 1.5rem;">
+                <button type="submit" class="mood-submit-btn">Find Your Perfect Soundtrack</button>
+            </div>
+        </form>
+        
+        <!-- Recommended Songs Section -->
+        {% if mood %}
+        <div class="recommended-section">
+            <h2>Recommended Tracks for "{{ mood }}"</h2>
+            <div id="recommendations">
+                {% if songs %}
+                    {% for song in songs %}
+                        <div class="song-card">
+                            <div class="song-header">
+                                <div class="song-image">
+                                    <img src="{{ song.photo.url }}" alt="{{ song.name }}">
+                                </div>
+                                <div class="song-info">
+                                    <div class="song-type">SONG</div>
+                                    <h1 class="song-title">{{ song.name }}</h1>
+                                    <div class="mood-tags">
+                                        <span class="mood-tag">{{ mood }}</span>
+                                    </div>
+                                    <div class="song-metadata">
+                                        <div class="metadata-item">Artist: {{ song.artist }}</div>
+                                    </div>
+                                </div>
+                            </div>
+              
+                            <div class="audio-controls">
+                                <button class="play-button" onclick="togglePlay(this)" aria-label="Play/Pause"></button>
+                                <audio class="audio-player" preload="metadata">
+                                    <source src="{{ song.audio.url }}" type="audio/mpeg">
+                                </audio>
+                            </div>
+              
+                            <div class="lyrics-container">
+                                <h2 class="lyrics-header">Lyrics</h2>
+                                <div class="lyrics-content">{{ song.lyrics }}</div>
+                                <button class="lyrics-toggle" onclick="toggleLyrics(this)">
+                                    <i class="fas fa-chevron-down"></i>
+                                    <span>Show more</span>
+                                </button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No songs found for this mood. Please add some in the admin panel.</p>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <script>
+      
+     
+
+
+// Complete fix for lyrics toggle functionality
+function toggleLyrics(button) {
+  const lyricsContent = button.previousElementSibling;
+  const lyricsContainer = button.parentElement;
+  const isExpanded = lyricsContent.classList.toggle('expanded');
+  
+  if (isExpanded) {
+    // Remove the height restriction completely
+    lyricsContent.style.maxHeight = 'none';
+    lyricsContent.style.overflow = 'visible';
+    button.querySelector('span').textContent = 'Show less';
+    if (button.querySelector('i')) {
+      button.querySelector('i').classList.replace('fa-chevron-down', 'fa-chevron-up');
+    }
+  } else {
+    // Reset to the original restricted height
+    lyricsContent.style.maxHeight = '120px';
+    lyricsContent.style.overflow = 'hidden';
+    button.querySelector('span').textContent = 'Show more';
+    if (button.querySelector('i')) {
+      button.querySelector('i').classList.replace('fa-chevron-up', 'fa-chevron-down');
+    }
+  }
+}
+      
+        // Updated song card creation
+        function createSongCard(song) {
+          return `
+              <div class="song-card">
+                  <div class="song-header">
+                      <div class="song-image">
+                          <img src="${song.image_url || '/static/default-cover.jpg'}" alt="${song.title}">
+                      </div>
+                      <div class="song-info">
+                          <div class="song-type">SONG</div>
+                          <h1 class="song-title">${song.title}</h1>
+                          <div class="mood-tags">
+                              ${song.mood_tags.split(',').map(tag => 
+                                  `<span class="mood-tag">${tag.trim()}</span>`
+                              ).join('')}
+                          </div>
+                      </div>
+                  </div>
+      
+                  <div class="audio-controls">
+                      <button class="play-button" onclick="togglePlay(this)" aria-label="Play/Pause"></button>
+                      <audio class="audio-player" preload="metadata">
+                          <source src="${song.audio_url}" type="audio/mpeg">
+                      </audio>
+                  </div>
+      
+                  <div class="lyrics-container">
+                      <h2 class="lyrics-header">Lyrics</h2>
+                      <div class="lyrics-content">${song.lyrics}</div>
+                      <button class="lyrics-toggle" onclick="toggleLyrics(this)">
+                          <i class="fas fa-chevron-down"></i>
+                          <span>Show more</span>
+                      </button>
+                  </div>
+              </div>
+          `;
+        }
+      
+        // Updated togglePlay function
+        function togglePlay(button) {
+          const audioPlayer = button.nextElementSibling;
+          
+          // Pause all other playing audio elements
+          document.querySelectorAll('audio').forEach(audio => {
+              if (audio !== audioPlayer && !audio.paused) {
+                  audio.pause();
+                  const otherButton = audio.previousElementSibling;
+                  if (otherButton) {
+                      otherButton.classList.remove('playing');
+                  }
+              }
+          });
+      
+          if (audioPlayer.paused) {
+              audioPlayer.play().then(() => {
+                  button.classList.add('playing');
+              }).catch(error => {
+                  console.error('Error playing audio:', error);
+              });
+          } else {
+              audioPlayer.pause();
+              button.classList.remove('playing');
+          }
+        }
+      
+        // Update the event listener for audio end
+        document.addEventListener('DOMContentLoaded', function() {
+          document.addEventListener('ended', function(e) {
+              if (e.target.tagName === 'AUDIO') {
+                  const button = e.target.previousElementSibling;
+                  if (button) {
+                      button.classList.remove('playing');
+                  }
+              }
+          }, true);
+        });
+      
+        // Helper function to format duration
+        function formatDuration(seconds) {
+          const minutes = Math.floor(seconds / 60);
+          const remainingSeconds = Math.floor(seconds % 60);
+          return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+        }
+      </script>
+    
+</body>
+</html>

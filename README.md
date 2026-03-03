@@ -1,55 +1,91 @@
-# Moodify
+# Music Mood Recommender
 
 ## Project Overview
-Moodify is an innovative application designed to help users manage and track their moods effectively. By providing insightful analytics and suggestions based on the user's mood data, Moodify empowers individuals to improve their emotional well-being.
+The Music Mood Recommender is a web application designed to provide personalized music recommendations based on the user's mood. It leverages advanced AI and deep learning technologies to analyze user preferences and suggest appropriate tracks.
 
 ## Tech Stack
-- **Frontend:** React
-- **Backend:** Node.js, Express
-- **Database:** MongoDB
-- **Hosting:** Heroku
-- **Libraries:** Mongoose, Axios, Redux
+- **Backend:** Django
+- **Machine Learning:** Transformers, PyTorch
+- **Database:** PostgreSQL
+- **Frontend:** HTML, CSS, JavaScript
 
-## Installation Instructions
+## Features
+- Mood Detection
+- Music Recommendation based on mood
+- User Authentication
+- Playlist Creation
+- API Integration for external music sources
+
+## Installation Guide
 1. Clone the repository:
    ```bash
    git clone https://github.com/ohnohimanshu/Moodify.git
+   ```
+2. Navigate into the project directory:
+   ```bash
    cd Moodify
    ```
-2. Install the dependencies:
+3. Install required packages:
    ```bash
-   npm install
+   pip install -r requirements.txt
    ```
-3. Set up environment variables:
-   Create a `.env` file in the root directory and add the required environment variables.
-4. Start the application:
+4. Run migrations:
    ```bash
-   npm start
+   python manage.py migrate
    ```
-
-## Features
-- User authentication and profiles
-- Mood tracking and analytics
-- Visual representations of mood trends
-- Suggestions for improving mood based on data analysis.
-- Integration with wearable devices for real-time mood tracking.
-
-## Deployment Guide
-1. Make sure your application is production-ready.
-2. Push your code to the main branch of your GitHub repository.
-3. Use Heroku CLI to create a new app:
+5. Start the server:
    ```bash
-   heroku create moodify-app
-   ```
-4. Deploy to Heroku:
-   ```bash
-   git push heroku main
-   ```
-5. Ensure all environment variables are set correctly on Heroku.
-6. Open your application in the browser:
-   ```bash
-   heroku open
+   python manage.py runserver
    ```
 
-## License
-This project is licensed under the MIT License.
+## Project Structure
+- `app/` - Contains the core application logic.
+- `migrations/` - Database migrations.
+- `static/` - Static files (CSS, JS, Images).
+- `templates/` - HTML templates.
+- `requirements.txt` - Required Python packages.
+
+## How It Works
+The application utilizes a machine learning model to analyze user inputs related to their mood and preferences, then fetches music that aligns with those inputs from an integrated music API.
+
+## Mood Categories
+- Happy
+- Sad
+- Relaxed
+- Energetic
+
+## API Endpoints
+- `GET /api/recommendations?mood=<mood>` - Get music recommendations based on mood.
+- `POST /api/users` - Create a new user.
+
+## Testing
+To run tests, use the following command:
+```bash
+python manage.py test
+```
+
+## Deployment
+To deploy the application, consider using a platform like Heroku or AWS. Ensure environment variables are set correctly.
+
+## Security
+Implement necessary security practices such as input validation, hashing passwords, and securing API endpoints.
+
+## Future Enhancements
+- Integrate more advanced mood detection algorithms.
+- Provide a user feedback loop to improve recommendations.
+
+## Contributing Guidelines
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Submit a pull request explaining your changes.
+
+## Acknowledgments
+- Thanks to the creators of Django and the frameworks used in this project.
+- Special thanks to the developers of transformers and PyTorch.
+
+## Author Information
+- **Name:** Himanshu
+- **GitHub:** [ohnohimanshu](https://github.com/ohnohimanshu)
+
+---
+*Last updated: 2026-03-03 06:23:54 UTC*
